@@ -6,4 +6,5 @@ make
 
 # usage
 write the output into a new file:
-  kicad2csvbom test.net > test.csv
+
+kicad2csvbom test.net > test.csv
