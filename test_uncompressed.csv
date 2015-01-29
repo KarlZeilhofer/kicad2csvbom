@@ -1,4 +1,4 @@
-id	ref	value	footprint	lib	part
+ID	Reference	Value	Footprint	Library	Part
 0	F101	RXEF030	bat-mon-sys:Polyfuse-MC33173	device	FUSE
 1	P101	T6	Connect:PINTST	device	TST
 2	P102	T7	Connect:PINTST	device	TST
