@@ -1,77 +1,78 @@
-Count	ID	Reference	Value	Footprint	Library	Part
-0 	F101 	1	RXEF030	bat-mon-sys:Polyfuse-MC33173	device	FUSE
-1 	P101 	1	T6	Connect:PINTST	device	TST
-2 	P102 	1	T7	Connect:PINTST	device	TST
-3 22 125 129 	C409 C401 C302 C309 	4	10n	w_smd_cap:c_0603	device	C
-4 	S405 	1	AGND	zeilhofer:SM1206_NC	zeilhofer	SELECTOR_NC
-5 	L401 	1	BLM31PG601SN1	bms-modules:SM1206	device	INDUCTOR
-6 	R403 	1	33R/250mW	w_smd_resistors:r_1206	device	R
-7 	D401 	1	75V	w_smd_diode:do214ac	device	ZENER
-8 40 41 97 98 	D402 D404 D403 D201 D202 	5	BAT46	w_smd_trans:sot323	device	DIODESCH
-9 	S402 	1	7V-StepDown	bms-modules:SS-NO	zeilhofer	SELECTOR_NO
-10 	S401 	1	5V-analog	bms-modules:SS-NO	zeilhofer	SELECTOR_NO
-11 	S403 	1	5V-digital	bms-modules:SS-NO	zeilhofer	SELECTOR_NO
-12 	P401 	1	DGND	bms-modules:TESTPOINT	device	TST
-13 	S404 	1	DGND	zeilhofer:SM1206_NC	zeilhofer	SELECTOR_NC
-14 16 19 	R407 R402 R408 	3	100k	w_smd_resistors:r_0603	device	R
-15 17 	Q402 Q401 	2	2N7002	bms-modules:SOT23GDS	device	MOSFET_N
-18 	R409 	1	27k	w_smd_resistors:r_0603	device	R
-20 	F401 	1	10A/medium	bms-modules:Fuse-Clips-20x5	device	FUSE
-21 	Q403 	1	SUM110P08-11L-E3	w_smd_trans:d2-pak	device	MOSFET_P
-23 30 	U403 U401 	2	LT1761-5	bms-modules:SOT23-5	BMS	LT1761-5
-24 25 28 29 34 39 89 96 130 	C410 C411 C403 C402 C405 C406 C202 C203 C312 	9	10u/16V/X7R	w_smd_cap:c_1206	device	C
-26 27 	R406 R401 	2	33R/100mW	w_smd_resistors:r_0603	device	R
-31 37 38 	C404 C407 C408 	3	1u/100V/X7R	w_smd_cap:c_1206	device	C
-32 49 50 55 56 74 	R405 R604 R603 R601 R602 R411 	6	15k	w_smd_resistors:r_0603	device	R
-33 	R404 	1	120k	w_smd_resistors:r_0603	device	R
-35 	L402 	1	220uH/300mA	bms-modules:spule-7x7mm	device	INDUCTOR
-36 	U402 	1	LTC3639	"bat-mon-sys:MSE16(12)-LTC3639"	BMS	LTC3639
-42 	R410 	1	150k	w_smd_resistors:r_0603	device	R
-43 	Q404 	1	PBSS8110T	bat-mon-sys:SOT-23-BEC	BatteryMonitoringSystem-cache	NPN-BEC
-44 	P502 	1	Communication	bat-mon-sys:wuerth-61201022121	BatteryMonitoringSystem-cache	CONN_5X2
-45 	P503 	1	Temperature	bat-mon-sys:wuerth-61201422121	BatteryMonitoringSystem-cache	CONN_7X2
-46 	P501 	1	Power	bat-mon-sys:Phoenix-PTS1,5#4-5,0-H-1792889	BatteryMonitoringSystem-cache	CONN_4
-47 69 	U601 U404 	2	AD8544	bms-modules:TSSOP14	linear	LM324
-48 	U603 	1	MAX4617	bms-modules:QSOP16	BMS	MAX4617
-51 52 53 54 57 58 59 60 61 65 67 70 86 91 92 93 94 95 122 123 124 	C608 C609 C603 C602 C601 C606 C604 C605 C610 C613 C607 C412 C201 C205 C208 C206 C204 C207 C308 C310 C313 	21	100n	w_smd_cap:c_0603	device	C
-62 64 	C611 C612 	2	1u/16V/X7R	w_smd_cap:c_1206	device	C
-63 	R605 	1	"4k7 MELF"	bms-modules:MELF-0204	device	R
-66 	U602 	1	MAX1302	bms-modules:TSSOP24	BMS	MAX1302
-68 	R621 	1	NTC	w_smd_resistors:r_0805	device	R
-71 	P402 	1	AIN7	Connect:PINTST	device	TST
-72 	P403 	1	ADC4	Connect:PINTST	device	TST
-73 	P404 	1	ADC5	Connect:PINTST	device	TST
-75 	R412 	1	62k	w_smd_resistors:r_0603	device	R
-76 	R413 	1	100R	w_smd_resistors:r_0603	device	R
-77 	P506 	1	CONN_01X03	w_pin_strip:pin_strip_3	conn	CONN_01X03
-78 	P505 	1	CONN_01X04	w_pin_strip:pin_socket_4	conn	CONN_01X04
-79 	P504 	1	CONN_01X08	w_pin_strip:pin_socket_8	conn	CONN_01X08
-80 	U203 	1	MAX3222EIDBG4	bat-mon-sys:SSOP-20-p0.65	BMS	MAX3222EIDBG4
-81 82 	R205 R204 	2	4k7	w_smd_resistors:r_0603	device	R
-83 	X201 	1	32.768kHz	bms-modules:SM1206	device	CRYSTAL
-84 	B201 	1	CR02032	bms-modules:HU2032	BMS	CELL
-85 	U202 	1	DS1338	w_smd_dil:so-8	BMS	DS1338
-87 	U201 	1	AT45DB642D	bat-mon-sys:VDFN8-E	BMS	AT45DB642D
-88 99 100 	R206 R201 R202 	3	47R/250mW	w_smd_resistors:r_1206	device	R
-90 	R203 	1	10R/50mW	w_smd_resistors:r_0603	device	R
-101 	Q201 	1	BUJ302AD	w_smd_trans:d-pak	BatteryMonitoringSystem-cache	NPN-BEC
-102 	P606 	1	RST	Connect:PINTST	device	TST
-103 	P605 	1	PA0	Connect:PINTST	device	TST
-104 	P604 	1	PA1	Connect:PINTST	device	TST
-105 	P603 	1	PA2	Connect:PINTST	device	TST
-106 	P601 	1	PA26	Connect:PINTST	device	TST
-107 	P602 	1	PA19	Connect:PINTST	device	TST
-108 	U301 	1	AT91SAM7S256	w_smd_lqfp:lqfp64	BatteryMonitoringSystem-cache	AT91SAM7S256
-109 	P301 	1	"JTAG + DBGU"	w_conn_strip:vasch_strip_5x2	BatteryMonitoringSystem-cache	CONN_5X2
-110 111 	R301 R302 	2	220R/100mW	w_smd_resistors:r_0603	device	R
-112 	C301 	1	470p	w_smd_cap:c_1206	device	C
-113 114 115 	R303 R304 R305 	3	47k	w_smd_resistors:r_0603	device	R
-116 	C315 	1	1n/NP0	w_smd_cap:c_1206	device	C
-117 118 119 	C306 C307 C314 	3	2u2/X7R	w_smd_cap:c_1206	device	C
-120 121 	C303 C304 	2	27p	w_smd_cap:c_1206	device	C
-126 	C305 	1	1n	w_smd_cap:c_0603	device	C
-127 	R307 	1	1k5	w_smd_resistors:r_0603	device	R
-128 	U302 	1	LT1761-33	bms-modules:SOT23-5	BMS	LT1761-5
-131 	R306 	1	1k/20mW	w_smd_resistors:r_0603	device	R
-132 133 	S301 S302 	2	STRAP_NO	bms-modules:SS-NO	BatteryMonitoringSystem-cache	STRAP_NO
-134 	X301 	1	"FA-238 20MHz"	bat-mon-sys:XTAL-FA238	BatteryMonitoringSystem-cache	CRYSTAL_SMD-1-3
+Count	Reference	Value	Footprint	Library	Part
+1	F101 	RXEF030	bat-mon-sys:Polyfuse-MC33173	device	FUSE
+1	P101 	T6	Connect:PINTST	device	TST
+1	P102 	T7	Connect:PINTST	device	TST
+4	C302 C309 C401 C409 	10n	w_smd_cap:c_0603	device	C
+1	S405 	AGND	zeilhofer:SM1206_NC	zeilhofer	SELECTOR_NC
+1	L401 	BLM31PG601SN1	bms-modules:SM1206	device	INDUCTOR
+1	R403 	33R/250mW	w_smd_resistors:r_1206	device	R
+1	D401 	75V	w_smd_diode:do214ac	device	ZENER
+5	D201 D202 D402 D403 D404 	BAT46	w_smd_trans:sot323	device	DIODESCH
+1	S402 	7V-StepDown	bms-modules:SS-NO	zeilhofer	SELECTOR_NO
+1	S401 	5V-analog	bms-modules:SS-NO	zeilhofer	SELECTOR_NO
+1	S403 	5V-digital	bms-modules:SS-NO	zeilhofer	SELECTOR_NO
+1	P401 	DGND	bms-modules:TESTPOINT	device	TST
+1	S404 	DGND	zeilhofer:SM1206_NC	zeilhofer	SELECTOR_NC
+3	R402 R407 R408 	100k	w_smd_resistors:r_0603	device	R
+2	Q401 Q402 	2N7002	bms-modules:SOT23GDS	device	MOSFET_N
+1	R409 	27k	w_smd_resistors:r_0603	device	R
+1	F401 	10A/medium	bms-modules:Fuse-Clips-20x5	device	FUSE
+1	Q403 	SUM110P08-11L-E3	w_smd_trans:d2-pak	device	MOSFET_P
+2	U401 U403 	LT1761-5	bms-modules:SOT23-5	BMS	LT1761-5
+9	C202 C203 C312 C402 C403 C405 C406 C410 C411 	10u/16V/X7R	w_smd_cap:c_1206	device	C
+2	R401 R406 	33R/100mW	w_smd_resistors:r_0603	device	R
+3	C404 C407 C408 	1u/100V/X7R	w_smd_cap:c_1206	device	C
+6	R405 R411 R601 R602 R603 R604 	15k	w_smd_resistors:r_0603	device	R
+1	R404 	120k	w_smd_resistors:r_0603	device	R
+1	L402 	220uH/300mA	bms-modules:spule-7x7mm	device	INDUCTOR
+1	U402 	LTC3639	"bat-mon-sys:MSE16(12)-LTC3639"	BMS	LTC3639
+1	R410 	150k	w_smd_resistors:r_0603	device	R
+1	Q404 	PBSS8110T	bat-mon-sys:SOT-23-BEC	BatteryMonitoringSystem-cache	NPN-BEC
+1	P502 	Communication	bat-mon-sys:wuerth-61201022121	BatteryMonitoringSystem-cache	CONN_5X2
+1	P503 	Temperature	bat-mon-sys:wuerth-61201422121	BatteryMonitoringSystem-cache	CONN_7X2
+1	P501 	Power	bat-mon-sys:Phoenix-PTS1,5#4-5,0-H-1792889	BatteryMonitoringSystem-cache	CONN_4
+2	U404 U601 	AD8544	bms-modules:TSSOP14	linear	LM324
+1	U603 	MAX4617	bms-modules:QSOP16	BMS	MAX4617
+21	C201 C204 C205 C206 C207 C208 C308 C310 C313 C412 C601 C602 C603 C604 C605 C606 C607 C608 C609 C610 C613 	100n	w_smd_cap:c_0603	device	C
+2	C611 C612 	1u/16V/X7R	w_smd_cap:c_1206	device	C
+1	R605 	"4k7 MELF"	bms-modules:MELF-0204	device	R
+1	U602 	MAX1302	bms-modules:TSSOP24	BMS	MAX1302
+1	R621 	NTC	w_smd_resistors:r_0805	device	R
+1	P402 	AIN7	Connect:PINTST	device	TST
+1	P403 	ADC4	Connect:PINTST	device	TST
+1	P404 	ADC5	Connect:PINTST	device	TST
+1	R412 	62k	w_smd_resistors:r_0603	device	R
+1	R413 	100R	w_smd_resistors:r_0603	device	R
+1	P506 	CONN_01X03	w_pin_strip:pin_strip_3	conn	CONN_01X03
+1	P505 	CONN_01X04	w_pin_strip:pin_socket_4	conn	CONN_01X04
+1	P504 	CONN_01X08	w_pin_strip:pin_socket_8	conn	CONN_01X08
+1	U203 	MAX3222EIDBG4	bat-mon-sys:SSOP-20-p0.65	BMS	MAX3222EIDBG4
+2	R204 R205 	4k7	w_smd_resistors:r_0603	device	R
+1	X201 	32.768kHz	bms-modules:SM1206	device	CRYSTAL
+1	B201 	CR02032	bms-modules:HU2032	BMS	CELL
+1	U202 	DS1338	w_smd_dil:so-8	BMS	DS1338
+1	U201 	AT45DB642D	bat-mon-sys:VDFN8-E	BMS	AT45DB642D
+3	R201 R202 R206 	47R/250mW	w_smd_resistors:r_1206	device	R
+1	R203 	10R/50mW	w_smd_resistors:r_0603	device	R
+1	Q201 	BUJ302AD	w_smd_trans:d-pak	BatteryMonitoringSystem-cache	NPN-BEC
+1	P606 	RST	Connect:PINTST	device	TST
+1	P605 	PA0	Connect:PINTST	device	TST
+1	P604 	PA1	Connect:PINTST	device	TST
+1	P603 	PA2	Connect:PINTST	device	TST
+1	P601 	PA26	Connect:PINTST	device	TST
+1	P602 	PA19	Connect:PINTST	device	TST
+1	U301 	AT91SAM7S256	w_smd_lqfp:lqfp64	BatteryMonitoringSystem-cache	AT91SAM7S256
+1	P301 	"JTAG + DBGU"	w_conn_strip:vasch_strip_5x2	BatteryMonitoringSystem-cache	CONN_5X2
+2	R301 R302 	220R/100mW	w_smd_resistors:r_0603	device	R
+1	C301 	470p	w_smd_cap:c_1206	device	C
+3	R303 R304 R305 	47k	w_smd_resistors:r_0603	device	R
+1	C315 	1n/NP0	w_smd_cap:c_1206	device	C
+3	C306 C307 C314 	2u2/X7R	w_smd_cap:c_1206	device	C
+2	C303 C304 	27p	w_smd_cap:c_1206	device	C
+1	C305 	1n	w_smd_cap:c_0603	device	C
+1	R307 	1k5	w_smd_resistors:r_0603	device	R
+1	U302 	LT1761-33	bms-modules:SOT23-5	BMS	LT1761-5
+1	R306 	1k/20mW	w_smd_resistors:r_0603	device	R
+3	S301 S302 S303 	STRAP_NO	bms-modules:SS-NO	BatteryMonitoringSystem-cache	STRAP_NO
+1	X301 	"FA-238 20MHz"	bat-mon-sys:XTAL-FA238	BatteryMonitoringSystem-cache	CRYSTAL_SMD-1-3
+136

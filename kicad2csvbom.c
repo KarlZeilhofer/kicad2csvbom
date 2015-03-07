@@ -208,6 +208,7 @@ int main(int argc, char** args)
 		printf("      -c, --compressed: combine references with same value and footprint into one line\n\n");
 		printf("      -lf, --linefeed: in compressed format, similar parts get a line break after 5 items\n");
 		printf("          this is for readability on many similar parts\n\n");
+		return 0;
 	}
 
 
