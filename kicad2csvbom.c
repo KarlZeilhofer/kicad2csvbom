@@ -8,13 +8,11 @@
  ============================================================================
  */
 
-// TODO: bugfix or workaround.
-// 		"(ref" und auch "(lib" kommt auch in anderen gruppen außer export:components:comp vor.
-// 		--> letzte componente erhält falsche einträge in ref.
 
 #include <stdio.h>
 #include <stdbool.h>
 #include <string.h>
+#include <ctype.h>
 
 // parsing a Netlist file from KiCad, and extract a bill of material (BOM) as a csv
 
@@ -146,36 +144,72 @@ bool contains(int* array, int len, int element)
 	return false;
 }
 
+int getDigitsCount(char* ref)
+{
+	int len = strlen(ref);
+	int d=0;
+	for(int n=len-1; isdigit(ref[n]) && n>=0; n--)
+	{
+		d++;
+	}
+	return d;
+}
+
+void insertZerosForSort(int maxDigits, char* ref)
+{
+	int len = strlen(ref);
+	int dc;
+	while((dc=getDigitsCount(ref)) < maxDigits)
+	{
+		len = strlen(ref);
+		ref[len+1]=0; // extend length
+		for(int n=0; n<dc; n++)
+		{
+			ref[len-n] = ref[len-n-1];
+		}
+		ref[len-dc] = '0'; // insert zero
+	}
+}
 
 // program name: kicad2csvbom
 int main(int argc, char** args)
 {
-	if(argc <= 1)
-	{
-		printf("  please give me a kicad .net file as inputfile.\n");
-		printf("    e.g. net2csvbom MyPcb.net\n");
-		printf("    or   net2csvbom --compressed MyPcb.net\n");
-	}
 	bool compressed = false;
+	bool linefeed = false;
+	char* infile = NULL;
 
-
-	if(strcmp("--compressed", args[1])==0){
-		compressed=true;
-	}
-
-	if(argc <= 2 && compressed)
+	// parse arguments:
+	for(int i=1; i<argc; i++)
 	{
-		printf("  please give me a kicad .net file as inputfile.\n");
-		printf("    e.g. net2csvbom MyPcb.net\n");
-		printf("    or   net2csvbom --compressed MyPcb.net\n");
-		return 1;
+		int len = strlen(args[i]);
+
+		if(strcmp(args[i]+len-4, ".net") == 0)
+		{
+			infile = args[i];
+		}
+		if(strcmp("--compressed", args[i])==0 || strcmp("-c", args[i])==0){
+			compressed=true;
+		}
+		if(strcmp("--linefeed", args[i])==0 || strcmp("-lf", args[i])==0){
+			linefeed=true;
+		}
 	}
 
-	char* infile;
-	if(compressed)
-		infile = args[2];
-	else
-		infile = args[1];
+	if(infile == 0)
+	{
+		printf("  kicad2csvbom is a simple tool for exporting a bill of materials from \n");
+		printf("      a KiCad netlist file (*.net)\n");
+		printf("  Usage examples:.\n");
+		printf("      kicad2csvbom MySchematic.net\n");
+		printf("      kicad2csvbom --compressed MySchematic.net\n");
+		printf("      kicad2csvbom --compressed --linefeed MySchematic.net\n");
+		printf("\n");
+		printf("  Flags:\n");
+		printf("      -c, --compressed: combine references with same value and footprint into one line\n\n");
+		printf("      -lf, --linefeed: in compressed format, similar parts get a line break after 5 items\n");
+		printf("          this is for readability on many similar parts\n\n");
+	}
+
 
 
 	FILE* in = fopen(infile, "r");
@@ -257,17 +291,68 @@ int main(int argc, char** args)
 				// print all similar references in one line
 				printf("%d\t", nSimilar); // count
 
+				// get maxDigits-count
+				int maxDigitsCount=0;
 				for(int i=0; i<nSimilar; i++) // print all Refs
 				{
+					int dc = getDigitsCount(components[iSimilars[i]].ref);
+					if(dc > maxDigitsCount)
+					{
+						maxDigitsCount = dc;
+					}
+				}
+
+				// sort by reference names:
+				for(int i=0; i<nSimilar; i++) // print all Refs
+				{
+					for(int j=0; j<nSimilar-1; j++) // print all Refs
+					{
+						// prepare both strings for sorting (insert leading zeros)
+						char s1[1000];
+						char s2[1000];
+						strcpy(s1, components[iSimilars[j]].ref);
+						insertZerosForSort(maxDigitsCount, s1);
+						strcpy(s2, components[iSimilars[j+1]].ref);
+						insertZerosForSort(maxDigitsCount, s2);
+						if(strcmp(s1, s2)>0)
+						{
+							// swap them
+							int h = iSimilars[j];
+							iSimilars[j] = iSimilars[j+1];
+							iSimilars[j+1] = h;
+						}
+					}
+				}
+
+				// whith linefeed activated we export something like this:
+				// "R1 R3 R6 R18 R19 \nR34 R35"
+				// including the double-quotes.
+				if(linefeed)
+				{
+					printf("\"");
+				}
+				for(int i=0; i<nSimilar; i++) // print all Refs
+				{
+					if(linefeed && i!=0 && i%5 == 0)
+					{
+						printf("\n");
+					}
 					printf("%s ", components[iSimilars[i]].ref);
 				}
+				if(linefeed)
+				{
+					printf("\"");
+				}
+
 				printf("\t");
 				printf("%s\t%s\t%s\t%s\n", components[iSimilars[0]].value, components[iSimilars[0]].footprint, components[iSimilars[0]].lib, components[iSimilars[0]].part);
 
 			}
 		}
+		// print sum in last line
+		printf("%d", N);
 	}
-	else
+	else // not compressed:
 	{
 		printf("%s\t%s\t%s\t%s\t%s\t%s\n", "ID", "Reference", "Value", "Footprint", "Library", "Part");
 
@@ -277,4 +362,6 @@ int main(int argc, char** args)
 		}
 	}
 }
+
+
 
